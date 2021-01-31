@@ -1,0 +1,4 @@
+.app-navigation {
+    grid-area: n;
+    background-color: rgb(38, 0, 255);
+}
