@@ -1,0 +1,5 @@
+.graphic {
+    grid-area: g;
+    background-color: rgb(223, 245, 143);
+    color: yellow;
+}

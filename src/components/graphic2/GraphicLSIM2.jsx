@@ -1,6 +1,6 @@
 import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-import styles from "./Graphic.module.css"
+import styles from "./GraphicLSIM2.module.css"
 
 const data = [
   { name: 'Page A', uv: 400, pv: 240, amt: 2400 },
@@ -26,7 +26,8 @@ const renderLineChart = (
 const Graphic = () => {
     return (
       <div className={styles.graphic}>
-        {renderLineChart}}
+        ЛСІМ2
+        {renderLineChart}
       </div>
     );
   }
