@@ -1,9 +1,9 @@
 import React from 'react';
-import "./Smile.css"
+import styles from "./Smile.module.css"
 
 const Smile = () => {
     return (
-      <div className="app-smile">
+      <div className={styles.smile}>
         Smile
       </div>
     );

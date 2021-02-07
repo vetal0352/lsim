@@ -1,0 +1,11 @@
+.navigation {
+    grid-area: n;
+    background-color: rgb(38, 0, 255);
+}
+.item {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+    color: white;    
+}

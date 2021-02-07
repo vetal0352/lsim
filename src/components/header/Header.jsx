@@ -1,9 +1,9 @@
 import React from 'react';
-import "./Header.css"
+import styles from  "./Header.module.css"
 
 const Header = () => {
     return (
-      <div className="app-header">
+      <div className={styles.header}>
         Логіко-статистичні інформаційні моделі
       </div>
     );

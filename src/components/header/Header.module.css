@@ -1,0 +1,6 @@
+.header {
+    grid-area: h;
+    background-color: rgb(38, 0, 255);
+    text-align: center;
+    font-size: xx-large;
+}

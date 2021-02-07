@@ -1,9 +1,9 @@
 import React from 'react';
-import "./Options.css"
+import styles from "./Options.module.css"
 
 const Options = () => {
     return (
-      <div className="app-options">
+      <div className={styles.options}>
         Options
       </div>
     );

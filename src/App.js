@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header';
-import Navigation from './components/Navigation';
-import Smile from './components/Smile';
-import Options from './components/Options';
-import Graphic from './components/Graphic';
+import Header from './components/header/Header';
+import Navigation from './components/navigation/Navigation';
+import Smile from './components/smile/Smile';
+import Options from './components/options/Options';
+import Graphic from './components/graphic/Graphic';
 
 const App = () => {
   return (
