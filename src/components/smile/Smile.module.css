@@ -3,3 +3,16 @@
     background-color: rgb(38, 0, 255);
     color: yellow;
 }
+svg {
+    padding: 15px;
+}
+line {
+    stroke: yellow; 
+    stroke-width: 4px;
+}
+
+circle {
+    fill:none; 
+    stroke: yellow; 
+    stroke-width:4px;
+}
