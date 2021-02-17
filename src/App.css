@@ -6,8 +6,8 @@
   "h h h"
   "n s g"
   "n o g";
-  grid-template-rows: 60px 1fr 1fr;
-  grid-template-columns: 1.5fr 4fr 6fr;
+  grid-template-rows: 60px 2fr 1fr;
+  grid-template-columns: 1.5fr 4fr 7fr;
   grid-gap: 10px;
   color: azure;
 }

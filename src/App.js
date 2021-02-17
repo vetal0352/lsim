@@ -21,11 +21,12 @@ const App = () => {
         <Smile />
         <Options />
         <div>
-          <Route path="/lsim1" component={GraphicLSIM1} />
-          <Route path="/lsim2" component={GraphicLSIM2} />
-          <Route path="/lsim3" component={GraphicLSIM3} />
-          <Route path="/lsim4" component={GraphicLSIM4} />
-          <Route path="/lsim5" component={GraphicLSIM5} />
+          <Route exact path="/" render={() => <GraphicLSIM1 />} />
+          <Route exact path="/lsim1" component={GraphicLSIM1} />
+          <Route exact path="/lsim2" component={GraphicLSIM2} />
+          <Route exact path="/lsim3" component={GraphicLSIM3} />
+          <Route exact path="/lsim4" component={GraphicLSIM4} />
+          <Route exact path="/lsim5" component={GraphicLSIM5} />
         </div>
       </div>
     </BrowserRouter>
