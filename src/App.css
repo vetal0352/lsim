@@ -4,10 +4,10 @@
   display: grid;
   grid-template-areas: 
   "h h h"
-  "n s g"
-  "n o g";
-  grid-template-rows: 60px 2fr 1fr;
-  grid-template-columns: 1.5fr 4fr 7fr;
+  "n g g"
+  "n s o";
+  grid-template-rows: 60px 2fr 1.4fr;
+  grid-template-columns: 3fr 4fr 4fr;
   grid-gap: 10px;
   color: azure;
 }

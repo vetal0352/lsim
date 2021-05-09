@@ -11,6 +11,7 @@ import GraphicLSIM3 from './components/graphic3/GraphicLSIM3';
 import GraphicLSIM4 from './components/graphic4/GraphicLSIM4';
 import GraphicLSIM5 from './components/graphic5/GraphicLSIM5';
 import { BrowserRouter, Route } from 'react-router-dom';
+import styles from "./components/graphic3/GraphicLSIM3.module.css"
 
 const App = () => {
   return (
@@ -18,9 +19,7 @@ const App = () => {
       <div className="app-wrapper">
         <Header />
         <Navigation />
-        <Smile />
-        <Options />
-        <div>
+        <div className={styles.graphic}>
           <Route exact path="/" render={() => <GraphicLSIM1 />} />
           <Route exact path="/lsim1" component={GraphicLSIM1} />
           <Route exact path="/lsim2" component={GraphicLSIM2} />
@@ -28,6 +27,8 @@ const App = () => {
           <Route exact path="/lsim4" component={GraphicLSIM4} />
           <Route exact path="/lsim5" component={GraphicLSIM5} />
         </div>
+        <Smile />
+        <Options />
       </div>
     </BrowserRouter>
   );

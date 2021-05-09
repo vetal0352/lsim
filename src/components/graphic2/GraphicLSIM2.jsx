@@ -32,4 +32,4 @@ const Graphic = () => {
     );
   }
   
-  export default Graphic;
+export default Graphic;

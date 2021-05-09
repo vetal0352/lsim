@@ -1,47 +1,51 @@
 import React from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ReferenceLine } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ReferenceLine } from 'recharts';
 import styles from "./GraphicLSIM1.module.css"
+import store from "../../store/store";
 
-const data = [
-  { name: '10', uv: 28 },
-  { name: '20', uv: 30 },
-  { name: '30', uv: 35 },
-  { name: '40', uv: 41 },
-  { name: '50', uv: 42 },
-  { name: '60', uv: 45 },
-  { name: '70', uv: 57 },
-  { name: '80', uv: 78 },
-  { name: '90', uv: 76 },
-  { name: '100', uv: 50 },
-  { name: '110', uv: 25 },
-  { name: '120', uv: 27 },
-  { name: '130', uv: 45 },
-  { name: '140', uv: 78 },
-  { name: '150', uv: 98 },
-  { name: '160', uv: 105 },
-  { name: '170', uv: 125 },
-  { name: '180', uv: 130 }
-];
+const ELAPSED_TIME = 1000
+const restrictHigh = 128
+const restrictLow = 32
 
 const renderLineChart = (
-  <LineChart width={600} height={300} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-    <ReferenceLine y={32} label="-1" stroke="red" />
-    <ReferenceLine y={128} label="+1" stroke="red" />
-    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-    <XAxis dataKey="name" />
-    <YAxis />
-    <Tooltip />
-    <Legend />
+  <LineChart width={900} height={300} data={store.getState().data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+      <ReferenceLine y={restrictLow} label="-1" stroke="red" />
+      <ReferenceLine y={restrictHigh} label="+1" stroke="red" />
+      <Line type="monotone" dataKey="lsim1" stroke="#8884d8" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
   </LineChart>
 );
 
-const Graphic = () => {
+class Graphic extends React.Component {
+  
+  componentDidMount() {
+    this.interval = setInterval(this.forceUpdate.bind(this), ELAPSED_TIME);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+  render() {
+    //const { baseTime, startedAt, stoppedAt } = this.props;
+    
     return (
       <div className={styles.graphic}>
         ЛСІМ1
-        {renderLineChart}
+        <div>Time: {ELAPSED_TIME}</div>
+        <div>
+          {renderLineChart}
+        </div>
+        <div>
+          <button onClick={() => this.props.startShift(ELAPSED_TIME)}>Start</button>
+          <button onClick={() => this.props.stopShift()}>Stop</button>
+          <button onClick={() => this.props.resetShift()}>Reset</button>
+        </div>
       </div>
     );
   }
-  
-  export default Graphic;
+}
+
+export default Graphic;

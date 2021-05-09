@@ -1,5 +1,5 @@
 .graphic {
-    grid-area: g;
+    grid-area: g g;
     background-color: rgb(223, 245, 143);
     color: yellow;
 }
