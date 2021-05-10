@@ -1,51 +1,54 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ReferenceLine } from 'recharts';
+import { connect } from 'react-redux';
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ReferenceLine, CartesianGrid } from 'recharts';
 import styles from "./GraphicLSIM1.module.css"
-import store from "../../store/store";
+import { acStartAutomatic, acStart, acStop } from "../../store/store";
 
 const ELAPSED_TIME = 1000
 const restrictHigh = 128
 const restrictLow = 32
 
-const renderLineChart = (
-  <LineChart width={900} height={300} data={store.getState().data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-      <ReferenceLine y={restrictLow} label="-1" stroke="red" />
-      <ReferenceLine y={restrictHigh} label="+1" stroke="red" />
-      <Line type="monotone" dataKey="lsim1" stroke="#8884d8" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-  </LineChart>
-);
+const getDataValues = state => state.data
+const getIntervalId = state => state.intervalId
 
-class Graphic extends React.Component {
-  
-  componentDidMount() {
-    this.interval = setInterval(this.forceUpdate.bind(this), ELAPSED_TIME);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-  render() {
-    //const { baseTime, startedAt, stoppedAt } = this.props;
-    
-    return (
-      <div className={styles.graphic}>
-        ЛСІМ1
-        <div>Time: {ELAPSED_TIME}</div>
-        <div>
-          {renderLineChart}
-        </div>
-        <div>
-          <button onClick={() => this.props.startShift(ELAPSED_TIME)}>Start</button>
-          <button onClick={() => this.props.stopShift()}>Stop</button>
-          <button onClick={() => this.props.resetShift()}>Reset</button>
-        </div>
-      </div>
-    );
-  }
+const Graphic = (props) => {
+  return (
+    <div className={styles.graphic}>
+        <LineChart width={900} height={300} data={props.values} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <ReferenceLine y={restrictLow} label="-1" stroke="red" />
+          <ReferenceLine y={restrictHigh} label="+1" stroke="red" />
+          <Line type="monotone" dataKey="lsim1" stroke="#8884d8" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+        </LineChart>
+        {!props.isShifted && <button onClick={props.start}>Shift 1 step</button>}
+        {!props.isShifted && <button onClick={props.startAutomatic}>Shift automatic</button>}
+        {props.isShifted && <button onClick={props.stop}>Stop</button>}
+    </div>
+  )
 }
 
-export default Graphic;
+const mapStateToProps = state => ({
+  values: getDataValues(state),
+  isShifted: getIntervalId(state)
+})
+
+const mapDispatchToProps = dispatch => ({
+  start: () => dispatch(acStart()),
+  startAutomatic: () => {
+    let intervalId = setInterval(() => dispatch(acStart()), ELAPSED_TIME)
+    dispatch(acStartAutomatic(intervalId))
+  },
+  stop: () => dispatch(acStop())
+})
+
+const GraphicConnected = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Graphic)
+
+
+export default GraphicConnected;

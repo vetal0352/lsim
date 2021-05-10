@@ -99,6 +99,7 @@ export const acStop = () => ({type: STOP_SHIFT})
 
 
 const mainReducer = (state = initialState, action) => {
+  debugger
     switch (action.type) {
         case START_SHIFT:
           let newData = [...state.data]
