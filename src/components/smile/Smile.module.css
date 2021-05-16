@@ -1,13 +1,13 @@
 .smile {
     grid-area: s;
     background-color: rgb(38, 0, 255);
-    color: yellow;
+    /*color: yellow;*/
 }
 svg {
     padding: 10px;
 }
-line {
-    stroke: yellow; 
+line .smile {
+    stroke: rgb(255, 0, 55); 
     stroke-width: 4px;
 }
 

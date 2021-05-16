@@ -3,3 +3,8 @@
    /* background-color: rgb(240, 230, 230);
     color: rgb(23, 20, 230);*/
 }
+
+line {
+    stroke: rgb(0, 255, 128); 
+    stroke-width: 2px;
+}

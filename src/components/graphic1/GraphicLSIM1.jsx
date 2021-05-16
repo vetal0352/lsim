@@ -16,7 +16,7 @@ const Graphic = (props) => {
     <div className={styles.graphic}>
         <LineChart width={900} height={300} data={props.values} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <ReferenceLine y={restrictLow} label="-1" stroke="red" />
+          <ReferenceLine y={restrictLow} label="-1" stroke="#ff0000" />
           <ReferenceLine y={restrictHigh} label="+1" stroke="red" />
           <Line type="monotone" dataKey="lsim1" stroke="#8884d8" />
           <XAxis dataKey="name" />
@@ -24,6 +24,7 @@ const Graphic = (props) => {
           <Tooltip />
           <Legend />
         </LineChart>
+        <p />
         {!props.isShifted && <button onClick={props.start}>Shift 1 step</button>}
         {!props.isShifted && <button onClick={props.startAutomatic}>Shift automatic</button>}
         {props.isShifted && <button onClick={props.stop}>Stop</button>}
