@@ -6,8 +6,8 @@
 svg {
     padding: 10px;
 }
-line .smile {
-    stroke: rgb(255, 0, 55); 
+.smile line {
+    stroke: yellow; 
     stroke-width: 4px;
 }
 
