@@ -84,7 +84,14 @@ const vals = [
 
 let initialState = {
     data: vals,
-    intervalId: undefined
+    intervalId: undefined,
+    restrictHighValue: 132,
+    restrictLowValue: 28,
+    lsim1: 0,
+    lsim2: 0,
+    lsim3: 0,
+    lsim4: 0,
+    lsim5: 0
 }
 
 // modelling actions
@@ -104,7 +111,9 @@ const mainReducer = (state = initialState, action) => {
         case START_SHIFT:
           let newData = [...state.data]
           newData.unshift(newData.pop())
-          return Object.assign({}, state, { data: newData })
+          let tmpArr = newData.filter(value => value > state.restrictHighValue || value < state.restrictLowValue)
+          let lsim1ValueForSmile = tmpArr.length ? 1 : 0
+          return Object.assign({}, state, { data: newData, lsim1: lsim1ValueForSmile })
         case START_SHIFT_AUTOMATIC:
           return Object.assign({}, state, { intervalId: action.intervalId })
         case STOP_SHIFT:

@@ -1,5 +1,12 @@
-import React from 'react';
+import React from 'react'
+import { connect } from 'react-redux'
 import styles from "./Smile.module.css"
+
+const getLsim1Value = state => state.lsim1
+const getLsim2Value = state => state.lsim2
+const getLsim3Value = state => state.lsim3
+const getLsim4Value = state => state.lsim4
+const getLsim5Value = state => state.lsim5
 
 const Smile = () => {
     return (
@@ -22,5 +29,17 @@ const Smile = () => {
       </div>
     );
   }
+
+  const mapStateToProps = state => ({
+    lsim1: getLsim1Value(state),
+    lsim2: getLsim2Value(state),
+    lsim3: getLsim3Value(state),
+    lsim4: getLsim4Value(state),
+    lsim5: getLsim5Value(state)
+  })
   
-  export default Smile;
+  const SmileConnected = connect(
+    mapStateToProps
+  )(Smile)
+  
+  export default SmileConnected;
