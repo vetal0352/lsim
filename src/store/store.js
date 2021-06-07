@@ -106,12 +106,11 @@ export const acStop = () => ({type: STOP_SHIFT})
 
 
 const mainReducer = (state = initialState, action) => {
-  debugger
-    switch (action.type) {
+      switch (action.type) {
         case START_SHIFT:
           let newData = [...state.data]
           newData.unshift(newData.pop())
-          let tmpArr = newData.filter(value => value > state.restrictHighValue || value < state.restrictLowValue)
+          let tmpArr = newData.filter(value => value.lsim1 > state.restrictHighValue || value.lsim1 < state.restrictLowValue)
           let lsim1ValueForSmile = tmpArr.length ? 1 : 0
           return Object.assign({}, state, { data: newData, lsim1: lsim1ValueForSmile })
         case START_SHIFT_AUTOMATIC:

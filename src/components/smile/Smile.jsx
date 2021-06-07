@@ -8,12 +8,15 @@ const getLsim3Value = state => state.lsim3
 const getLsim4Value = state => state.lsim4
 const getLsim5Value = state => state.lsim5
 
-const Smile = () => {
+const Smile = (props) => {
+    debugger
     return (
       <div className={styles.smile}>
         <svg version="1.1" width="100%" height="100%">
           <rect x="0" y="0" width="350" height="200" rx="20"/>
-          <line x1="40" y1="30" x2="310" y2="30" />
+          { props.lsim1 ? <line x1="40" y1="30" x2="30" y2="30" />
+                        : <line x1="40" y1="30" x2="310" y2="30" />
+          }
           <line x1="30" y1="40" x2="320" y2="40" />
           <line x1="50" y1="65" x2="130" y2="65" />
           <line x1="40" y1="55" x2="50" y2="65" />
