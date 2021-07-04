@@ -1,8 +1,6 @@
 
 import {createStore} from 'redux';
 
-//export const actionShift = "actionShift";
-
 const vals = [
     { name: '0', lsim1: 0 },
     { name: '1', lsim1: 28 },
@@ -99,28 +97,32 @@ let initialState = {
 const START_SHIFT = "START_SHIFT"
 const START_SHIFT_AUTOMATIC = "START_SHIFT_AUTOMATIC"
 const STOP_SHIFT = "STOP_SHIFT"
+const CALC_LSIM1_ONLOAD = "CALC_LSIM1_ONLOAD"
 
 export const acStart = () => ({type: START_SHIFT})
 export const acStartAutomatic = (intervalId) => ({type: START_SHIFT_AUTOMATIC, intervalId})
 export const acStop = () => ({type: STOP_SHIFT})
-
+export const acCalcLSIM1_OnLoad = () => ({type: CALC_LSIM1_ONLOAD})
 
 const mainReducer = (state = initialState, action) => {
   debugger
+  const outOfBounds = (elem) => elem.lsim1 > state.restrictHighValue || elem.lsim1 < state.restrictLowValue  
     switch (action.type) {
-        case START_SHIFT:
-          let newData = [...state.data]
-          newData.unshift(newData.pop())
-          let tmpArr = newData.filter(value => value > state.restrictHighValue || value < state.restrictLowValue)
-          let lsim1ValueForSmile = tmpArr.length ? 1 : 0
-          return Object.assign({}, state, { data: newData, lsim1: lsim1ValueForSmile })
-        case START_SHIFT_AUTOMATIC:
-          return Object.assign({}, state, { intervalId: action.intervalId })
-        case STOP_SHIFT:
-          clearInterval(state.intervalId);
-          return Object.assign({}, state, { intervalId: undefined })
-        default:
-          return state
+      case CALC_LSIM1_ONLOAD:
+        let lsim1ValueForOnLoadSmile = state.data.some(outOfBounds) ? 1 : 0
+        return Object.assign({}, state, { lsim1: lsim1ValueForOnLoadSmile })
+      case START_SHIFT:
+        let newData = [...state.data]
+        newData.unshift(newData.pop())
+        let lsim1ValueForSmile = newData.some(outOfBounds) ? 1 : 0
+        return Object.assign({}, state, { data: newData, lsim1: lsim1ValueForSmile })
+      case START_SHIFT_AUTOMATIC:
+        return Object.assign({}, state, { intervalId: action.intervalId })
+      case STOP_SHIFT:
+        clearInterval(state.intervalId);
+        return Object.assign({}, state, { intervalId: undefined })
+      default:
+        return state
     }
 }
 
