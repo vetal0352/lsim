@@ -105,6 +105,7 @@ export const acStop = () => ({type: STOP_SHIFT})
 export const acCalcLSIM1_OnLoad = () => ({type: CALC_LSIM1_ONLOAD})
 
 const mainReducer = (state = initialState, action) => {
+<<<<<<< HEAD
   debugger
   const outOfBounds = (elem) => elem.lsim1 > state.restrictHighValue || elem.lsim1 < state.restrictLowValue  
     switch (action.type) {
@@ -123,6 +124,22 @@ const mainReducer = (state = initialState, action) => {
         return Object.assign({}, state, { intervalId: undefined })
       default:
         return state
+=======
+      switch (action.type) {
+        case START_SHIFT:
+          let newData = [...state.data]
+          newData.unshift(newData.pop())
+          let tmpArr = newData.filter(value => value.lsim1 > state.restrictHighValue || value.lsim1 < state.restrictLowValue)
+          let lsim1ValueForSmile = tmpArr.length ? 1 : 0
+          return Object.assign({}, state, { data: newData, lsim1: lsim1ValueForSmile })
+        case START_SHIFT_AUTOMATIC:
+          return Object.assign({}, state, { intervalId: action.intervalId })
+        case STOP_SHIFT:
+          clearInterval(state.intervalId);
+          return Object.assign({}, state, { intervalId: undefined })
+        default:
+          return state
+>>>>>>> b4b83d54cf481c333443176d42666db97fe241df
     }
 }
 
