@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/header/Header';
 import Navigation from './components/navigation/Navigation';
 import Smile from './components/smile/Smile';
-import Options from './components/options/Options';
+import Options1 from './components/options1/Options1';
 //import Graphic from './components/graphic/Graphic';
 import GraphicLSIM1 from './components/graphic1/GraphicLSIM1';
 import GraphicLSIM2 from './components/graphic2/GraphicLSIM2';
@@ -28,7 +28,7 @@ const App = () => {
           <Route exact path="/lsim5" component={GraphicLSIM5} />
         </div>
         <Smile />
-        <Options />
+        <Options1 />
       </div>
     </BrowserRouter>
   );
