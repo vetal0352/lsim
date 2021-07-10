@@ -28,7 +28,10 @@ const App = () => {
           <Route exact path="/lsim5" component={GraphicLSIM5} />
         </div>
         <Smile />
-        <Options1 />
+        <div>
+          <Route exact path="/" render={() => <Options1 />} />
+          <Route exact path="/lsim1" component={Options1} />
+        </div>
       </div>
     </BrowserRouter>
   );

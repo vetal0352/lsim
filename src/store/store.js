@@ -83,8 +83,8 @@ const vals = [
 let initialState = {
     data: vals,
     intervalId: undefined,
-    restrictHighValue: 132,
-    restrictLowValue: 28,
+    restrictHighValue: 200,
+    restrictLowValue: -100,
     lsim1: 0,
     lsim2: 0,
     lsim3: 0,
@@ -97,15 +97,20 @@ let initialState = {
 const START_SHIFT = "START_SHIFT"
 const START_SHIFT_AUTOMATIC = "START_SHIFT_AUTOMATIC"
 const STOP_SHIFT = "STOP_SHIFT"
+const SET_RESTRICT_HIGH_VALUE = "SET_RESTRICT_HIGH_VALUE"
+const SET_RESTRICT_LOW_VALUE = "SET_RESTRICT_LOW_VALUE"
 
 export const acStart = () => ({type: START_SHIFT})
 export const acStartAutomatic = (intervalId) => ({type: START_SHIFT_AUTOMATIC, intervalId})
 export const acStop = () => ({type: STOP_SHIFT})
+export const acSetRestrictHighValue = hValue => ({type: SET_RESTRICT_HIGH_VALUE, hValue})
+export const acSetRestrictLowValue = lValue => ({type: SET_RESTRICT_LOW_VALUE, lValue})
 
 const mainReducer = (state = initialState, action) => {
 
   const outOfBounds = (elem) => elem.lsim1 > state.restrictHighValue || elem.lsim1 < state.restrictLowValue  
 
+  //debugger
   switch (action.type) {
 
       case START_SHIFT:
@@ -120,7 +125,13 @@ const mainReducer = (state = initialState, action) => {
       case STOP_SHIFT:
         clearInterval(state.intervalId);
         return Object.assign({}, state, { intervalId: undefined })
-  
+
+      case SET_RESTRICT_HIGH_VALUE:
+        return Object.assign({}, state, {restrictHighValue: action.hValue})
+
+      case SET_RESTRICT_LOW_VALUE:
+        return Object.assign({}, state, {restrictLowValue: action.lValue})
+          
       default:
         return state
     }

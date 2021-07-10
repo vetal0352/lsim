@@ -11,7 +11,7 @@ const getLsim4Value = state => state.lsim4
 const getLsim5Value = state => state.lsim5
 
 const Smile = (props) => {
-    debugger
+    
     useEffect(() => {props.start()})
     return (
       <div className={styles.smile}>

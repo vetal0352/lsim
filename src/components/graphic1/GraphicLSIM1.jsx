@@ -13,6 +13,7 @@ const getRestrictLowValue = state => state.restrictLowValue
 
 
 const Graphic = (props) => {
+  debugger
   return (
     <div className={styles.graphic}>
         <LineChart width={900} height={300} data={props.values} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>

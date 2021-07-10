@@ -2,4 +2,9 @@
     grid-area: o;
     background-color: rgb(38, 0, 255);
     /*color: yellow;*/
+    padding: 10px 10px;
+}
+
+input {
+    margin: .4rem
 }
