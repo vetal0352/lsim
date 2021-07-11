@@ -80,25 +80,26 @@ const vals = [
     { name: '75', lsim1: 130 }
 ];
 
+export const MAX_VALUE = 200
+export const MIN_VALUE = -50
+// modelling actions
+const START_SHIFT = "START_SHIFT"
+const START_SHIFT_AUTOMATIC = "START_SHIFT_AUTOMATIC"
+const STOP_SHIFT = "STOP_SHIFT"
+const SET_RESTRICT_HIGH_VALUE = "SET_RESTRICT_HIGH_VALUE"
+const SET_RESTRICT_LOW_VALUE = "SET_RESTRICT_LOW_VALUE"
+
 let initialState = {
     data: vals,
     intervalId: undefined,
-    restrictHighValue: 200,
-    restrictLowValue: -100,
+    restrictHighValue: MAX_VALUE,
+    restrictLowValue: MIN_VALUE,
     lsim1: 0,
     lsim2: 0,
     lsim3: 0,
     lsim4: 0,
     lsim5: 0
 }
-
-// modelling actions
-
-const START_SHIFT = "START_SHIFT"
-const START_SHIFT_AUTOMATIC = "START_SHIFT_AUTOMATIC"
-const STOP_SHIFT = "STOP_SHIFT"
-const SET_RESTRICT_HIGH_VALUE = "SET_RESTRICT_HIGH_VALUE"
-const SET_RESTRICT_LOW_VALUE = "SET_RESTRICT_LOW_VALUE"
 
 export const acStart = () => ({type: START_SHIFT})
 export const acStartAutomatic = (intervalId) => ({type: START_SHIFT_AUTOMATIC, intervalId})
