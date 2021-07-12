@@ -18,8 +18,8 @@ const Graphic = (props) => {
     <div className={styles.graphic}>
         <LineChart width={900} height={300} data={props.values} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <ReferenceLine className={styles.refline} y={props.restrictLowValue} label="-1" stroke="red" />
-          <ReferenceLine className={styles.refline} y={props.restrictHighValue} label="+1" stroke="red" />
+          <ReferenceLine className={styles.refline} y={props.restrictLowValue} label="-1" stroke="red" alwaysShow />
+          <ReferenceLine className={styles.refline} y={props.restrictHighValue} label="+1" stroke="red" alwaysShow />
           <Line type="monotone" dataKey="lsim1" stroke="#8884d8" />
           <XAxis dataKey="name" />
           <YAxis />
