@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { acSetRestrictHighValue, acSetRestrictLowValue, MAX_VALUE, MIN_VALUE } from '../../store/store';
+import { acSetRestrictHighValue, acSetRestrictLowValue, MAX_VALUE, MIN_VALUE } from '../../store/reducers/reducer1';
 import styles from "./Options1.module.css"
 
 const getRestrictHighValue = state => state.restrictHighValue

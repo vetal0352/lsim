@@ -2,15 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ReferenceLine, CartesianGrid } from 'recharts';
 import styles from "./GraphicLSIM1.module.css"
-import { acStartAutomatic, acStart, acStop } from "../../store/store";
-
-const ELAPSED_TIME = 1000
+import { acStart, acStop, tcStartAutomatic } from "../../store/reducers/reducer1";
 
 const getDataValues = state => state.data
 const getIntervalId = state => state.intervalId
 const getRestrictHighValue = state => state.restrictHighValue
 const getRestrictLowValue = state => state.restrictLowValue
-
 
 const Graphic = (props) => {
   debugger
@@ -18,8 +15,8 @@ const Graphic = (props) => {
     <div className={styles.graphic}>
         <LineChart width={900} height={300} data={props.values} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <ReferenceLine className={styles.refline} y={props.restrictLowValue} label="-1" stroke="red" alwaysShow />
-          <ReferenceLine className={styles.refline} y={props.restrictHighValue} label="+1" stroke="red" alwaysShow />
+          <ReferenceLine className={styles.refline} y={props.restrictLowValue} label="-1" stroke="red" ifOverflow="extendDomain" />
+          <ReferenceLine className={styles.refline} y={props.restrictHighValue} label="+1" stroke="red" ifOverflow="extendDomain" />
           <Line type="monotone" dataKey="lsim1" stroke="#8884d8" />
           <XAxis dataKey="name" />
           <YAxis />
@@ -43,10 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   start: () => dispatch(acStart()),
-  startAutomatic: () => {
-    let intervalId = setInterval(() => dispatch(acStart()), ELAPSED_TIME)
-    dispatch(acStartAutomatic(intervalId))
-  },
+  startAutomatic: () => dispatch(tcStartAutomatic()),
   stop: () => dispatch(acStop())
 })
 
