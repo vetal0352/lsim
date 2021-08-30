@@ -4,10 +4,10 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Cartesia
 import styles from "./GraphicLSIM1.module.css"
 import { acStart, acStop, tcStartAutomatic } from "../../store/reducers/reducer1";
 
-const getDataValues = state => state.data
-const getIntervalId = state => state.intervalId
-const getRestrictHighValue = state => state.restrictHighValue
-const getRestrictLowValue = state => state.restrictLowValue
+const getDataValues = state => state.lsim1State.data
+const getIntervalId = state => state.lsim1State.intervalId
+const getRestrictHighValue = state => state.lsim1State.restrictHighValue
+const getRestrictLowValue = state => state.lsim1State.restrictLowValue
 
 const Graphic = (props) => {
   debugger

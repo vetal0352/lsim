@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import styles from "./Smile.module.css"
 import { acStart } from "../../store/reducers/reducer1";
 
-const getLsim1Value = state => state.lsim1
+const getLsim1Value = state => state.lsim1State.lsim1
 const getLsim2Value = state => state.lsim2
 const getLsim3Value = state => state.lsim3
 const getLsim4Value = state => state.lsim4
